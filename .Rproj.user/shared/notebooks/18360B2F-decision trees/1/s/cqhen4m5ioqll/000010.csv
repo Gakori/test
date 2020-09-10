@@ -1,0 +1,102 @@
+"0","install.packages(""party"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ‘C:/Users/FGakori/Documents/R/win-library/4.0’
+(as ‘lib’ is unspecified)
+"
+"2","also installing the dependencies ‘libcoin’, ‘modeltools’, ‘strucchange’, ‘coin’
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/libcoin_1.0-6.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 993424 bytes (970 KB)
+"
+"2","downloaded 970 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/modeltools_0.2-23.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 207116 bytes (202 KB)
+"
+"2","downloaded 202 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/strucchange_1.5-2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 984073 bytes (961 KB)
+"
+"2","downloaded 961 KB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/coin_1.3-1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 1467790 bytes (1.4 MB)
+"
+"2","downloaded 1.4 MB
+
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/party_1.3-5.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 972330 bytes (949 KB)
+"
+"2","downloaded 949 KB
+
+"
+"1","package â€˜libcoinâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜modeltoolsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜strucchangeâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜coinâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜partyâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\FGakori\AppData\Local\Temp\RtmpyUGvMW\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(party)"
+"2","Loading required package: grid
+"
+"2","Loading required package: mvtnorm
+"
+"2","Loading required package: modeltools
+"
+"2","Loading required package: stats4
+"
+"2","Loading required package: strucchange
+"
+"2","Loading required package: zoo
+"
+"2","
+Attaching package: ‘zoo’
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    as.Date, as.Date.numeric
+
+"
+"2","Loading required package: sandwich
+"
+"2","
+Attaching package: ‘strucchange’
+
+"
+"2","The following object is masked from ‘package:stringr’:
+
+    boundary
+
+"

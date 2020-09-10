@@ -1,0 +1,2 @@
+"0","(test <- test %>%"
+"0","   add_predictions(model1))"

@@ -1,0 +1,3 @@
+"0","list(model1 = broom::glance(model1), model2 = broom::glance(model2))"
+"1","$model1
+"

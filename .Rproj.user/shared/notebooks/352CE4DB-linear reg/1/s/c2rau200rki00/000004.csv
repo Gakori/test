@@ -1,0 +1,4 @@
+"0","# train MSE"
+"0","train %>% "
+"0","  add_predictions(model1) %>%"
+"0","  summarise(MSE = mean((Sales - pred)^2))"

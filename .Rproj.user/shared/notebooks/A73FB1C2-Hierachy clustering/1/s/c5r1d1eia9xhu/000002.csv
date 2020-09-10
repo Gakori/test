@@ -1,0 +1,7 @@
+"0","# median method"
+"0",""
+"0","median_m <- hclust(d, method = 'median')"
+"0",""
+"0","# plot"
+"0",""
+"0","plot(median_m, cex = 0.6, hang = -1)"

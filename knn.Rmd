@@ -1,0 +1,222 @@
+---
+title: "KNN"
+author: "Faith"
+date: "9/7/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r}
+head(iris)
+```
+
+
+```{r}
+set.seed(1234)
+```
+
+Randomizing the rows, creates a uniform distribution of 150
+```{r}
+random <- runif(150)
+iris_random <- iris[order(random),]
+
+```
+
+```{r}
+head(iris_random)
+```
+Normalizing numerical variables of the dataset. We define a normal function which will normalize the set of values according to its minimum value and maximum value.
+```{r}
+normal <- function(x) (
+  return( ((x - min(x)) /(max(x)-min(x))) ))
+```
+
+```{r}
+normal(1:5)
+```
+```{r}
+iris_new <- as.data.frame(lapply(iris_random[,-5],normal))
+iris_new
+```
+
+```{r}
+summary(iris_new)
+```
+Test and Train sets
+```{r}
+train <- iris_new[1:130,]
+test <- iris_new[131:150,]
+train_sp <- iris_random[1:130,5]
+test_sp <- iris_random[131:150,5]
+```
+
+class package that contains knn algorithm
+```{r}
+library(class)
+require(class)
+model <- knn(train= train, test=test, ,cl= train_sp,k=13)
+table(factor(model))
+table(test_sp,model)
+```
+
+# Example 2
+
+```{r}
+library(ggplot2)
+```
+
+Loading diamond dataset
+
+```{r}
+head(diamonds)
+```
+
+storing it as a dataframe
+```{r}
+dia <- data.frame(diamonds)
+head(dia)
+```
+
+Creating a random number equal 90% of total number of rows
+```{r}
+ran <- sample(1:nrow(dia),0.9 * nrow(dia))
+```
+
+The normalization function is created
+
+```{r}
+nor <-function(x) { (x -min(x))/(max(x)-min(x))   }
+```
+
+
+Normalization function is applied to the dataframe
+```{r}
+dia_nor <- as.data.frame(lapply(dia[,c(1,5,6,7,8,9,10)], nor))
+```
+The training dataset extracted
+```{r}
+dia_train <- dia_nor[ran,]
+```
+
+The test dataset extracted
+```{r}
+dia_test <- dia_nor[-ran,]
+```
+
+The 2nd column of training dataset because that is what we need to predict about testing dataset. also convert ordered factor to normal factor
+```{r}
+dia_target <- as.factor(dia[ran,2])
+```
+
+The actual values of 2nd couln of testing dataset to compaire it with values that will be predicted
+also convert ordered factor to normal factor
+```{r}
+test_target <- as.factor(dia[-ran,2])
+```
+
+Running the knn function
+```{r}
+library(class)
+pr <- knn(dia_train,dia_test,cl=dia_target,k=20)
+```
+
+Creating the confucion matrix
+```{r}
+tb <- table(pr,test_target)
+```
+
+Checking the accuracy
+```{r}
+accuracy <- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}
+accuracy(tb)
+```
+
+# prostrate dataset
+
+```{r}
+getwd()
+```
+```{r}
+setwd('C:/Users/FGakori/Documents/supervised and unsupervised')
+getwd()
+```
+
+```{r}
+prc <- read.csv('Prostate_Cancer.csv', stringsAsFactors = FALSE)#converts every charater vector to a factor wherever it makes sense
+head(prc)
+```
+
+
+```{r}
+stringsAsFactors = FALSE 
+```
+
+
+```{r}
+str(prc)
+```
+
+
+```{r}
+#remove the first variable
+prc <- prc[-1]
+head(prc)
+```
+
+
+```{r}
+# data contains patients diagnoses as either Malignan(M) or Bening(B)
+table(prc$diagnosis_result)
+```
+# normalize numeric data
+
+```{r}
+normalize <- function(x) {
+  return((x - min(x)) / (max(x)))
+}
+
+prc_n <- as.data.frame(lapply(prc[2:9], normalize))
+```
+
+
+```{r}
+summary(prc_n$texture)
+```
+# creating training and test set
+divide into 65:35
+```{r}
+prc_train <- prc_n[1:65,] # the blank value in both indicates that each row and column should be included
+prc_test <- prc_n[66:100,]
+```
+
+
+```{r}
+prc_train_labels <- prc[1:65, 1]
+prc_test_labels <- prc[66:100, 1]   #This code takes the diagnosis factor in column 1 of the prc data frame and on turn creates prc_train_labels and prc_test_labels data frame.
+```
+
+
+# training the model using knn
+```{r}
+library(class)
+```
+
+
+```{r}
+prc_test_pred <- knn(train = prc_train, test = prc_test,cl = prc_train_labels, k=10) # k is square root of n observations
+prc_test_pred
+```
+# evaluate model perfomance
+we sue CrossTable() function
+
+```{r}
+install.packages('gmodels')
+library(gmodels)
+```
+
+
+```{r}
+CrossTable(x = prc_test_labels, y = prc_test_pred, prop.chisq = FALSE)
+```
+test data consisted 35 observations.out of which 8 have been correctly predicted (TN) as B ie 22.9% . also 16 out of 35 have coreectly been predicted (TP) as M ie 45.7%. 

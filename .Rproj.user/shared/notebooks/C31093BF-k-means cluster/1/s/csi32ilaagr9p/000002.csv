@@ -1,0 +1,4 @@
+"0","# Plotting to see how Sepal.Length and Sepal.Width data points have been distributed  "
+"0","# originally as per ""class"" attribute in dataset"
+"0",""
+"0","plot(iris.new[c(1,2)], col = iris.class)"

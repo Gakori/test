@@ -1,0 +1,2 @@
+"0","prc <- read.csv('Prostate_Cancer.csv', stringsAsFactors = FALSE)#converts every charater vector to a factor wherever it makes sense"
+"0","head(prc)"

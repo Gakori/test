@@ -1,0 +1,4 @@
+"0","intrain <- createDataPartition(y = heart$V14, p= 0.7, list = FALSE)"
+"2","Some classes have a single record ( target ) and these will be selected for the sample"
+"0","training <- heart[intrain,]"
+"0","testing <- heart[-intrain,]"

@@ -1,0 +1,101 @@
+---
+title: "Decision Trees"
+author: "Faith"
+date: "9/7/2020"
+output: html_document
+---
+
+EXAMPLE 1
+```{r}
+install.packages("party")
+library(party)
+```
+
+```{r}
+print(head(readingSkills))
+```
+use ctree() function to create a decision tree
+```{r}
+# create an input dataframe
+input.dat <- readingSkills[c(1:105),]
+
+# give the chart file a name
+png(file = 'decision_tree.png')
+
+#create the tree
+output.tree <- ctree(
+  nativeSpeaker ~ age + shoeSize + score,
+  data = input.dat)
+
+# plot the tree
+plot(output.tree)
+
+# save the file
+dev.off()
+```
+
+
+```{r}
+
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+

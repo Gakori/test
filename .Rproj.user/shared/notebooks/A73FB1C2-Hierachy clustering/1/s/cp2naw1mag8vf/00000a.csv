@@ -1,0 +1,6 @@
+"0","# McQuitty's"
+"0",""
+"0","mc <- hclust(d, method = ""mcquitty"" )"
+"0",""
+"0","# plot"
+"0","plot(mc, cex=0.6, hang=-1)"

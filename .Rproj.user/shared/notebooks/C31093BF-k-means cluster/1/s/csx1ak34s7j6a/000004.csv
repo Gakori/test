@@ -1,0 +1,6 @@
+"0","# remove species and store it in another variable"
+"0","# normalize"
+"0",""
+"0","iris.new <- iris[, c(1,2,3,4)]"
+"0","iris.class <- iris[, 'Species']"
+"0","head(iris.new)"

@@ -1,0 +1,2 @@
+"0","prc_train_labels <- prc[1:65, 1]"
+"0","prc_test_labels <- prc[66:100, 1]   #This code takes the diagnosis factor in column 1 of the prc data frame and on turn creates prc_train_labels and prc_test_labels data frame."

@@ -1,0 +1,7 @@
+"0","# single method"
+"0",""
+"0","single_m <- hclust(d, method = ""single"" )"
+"0",""
+"0","# visualize"
+"0",""
+"0","plot(single_m, cex = 0.6, hang = -1)"

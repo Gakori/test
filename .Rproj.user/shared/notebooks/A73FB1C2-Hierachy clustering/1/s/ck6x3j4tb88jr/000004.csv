@@ -1,0 +1,5 @@
+"0","# centroid"
+"0","cent <- hclust(d, method = ""centroid"")"
+"0",""
+"0","#plot"
+"0","plot(cent, cex = 0.6, hang = -1)"

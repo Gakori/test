@@ -1,0 +1,2 @@
+"0","# plot the result to determine the optimal number of clusters."
+"0","fviz_gap_stat(gap_stat)"

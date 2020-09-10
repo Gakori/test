@@ -1,0 +1,3 @@
+"0","wines_K3 <- kmeans(winesNorm, centers = 3, nstart = 25)"
+"0","wines_K4 <- kmeans(winesNorm, centers = 4, nstart = 25)"
+"0","wines_K5 <- kmeans(winesNorm, centers = 5, nstart = 25)"

@@ -1,0 +1,6 @@
+"0","p1 <- fviz_cluster(wines_k2, geom = ""point"", data = winesNorm) + ggtitle("" K = 2"")"
+"0","p2 <- fviz_cluster(wines_K3, geom = ""point"", data = winesNorm) + ggtitle("" K = 3"")"
+"0","p3 <- fviz_cluster(wines_K4, geom = ""point"", data = winesNorm) + ggtitle("" K = 4"")"
+"0","p4 <- fviz_cluster(wines_K5, geom = ""point"", data = winesNorm) + ggtitle("" K = 5"")"
+"0",""
+"0","grid.arrange(p1, p2, p3, p4, nrow = 2)"

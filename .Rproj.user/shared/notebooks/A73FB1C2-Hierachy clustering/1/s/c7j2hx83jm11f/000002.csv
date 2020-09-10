@@ -1,0 +1,7 @@
+"0","# ward"
+"0",""
+"0","ward <- hclust(d, method = 'ward.D')"
+"0",""
+"0","#plot"
+"0",""
+"0","plot(ward, cex = 0.6, hang = -1)"

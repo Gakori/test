@@ -1,0 +1,25 @@
+{
+    "id": "E47882A3",
+    "path": "~/supervised and unsupervised/k-means cluster.Rmd",
+    "project_path": "k-means cluster.Rmd",
+    "type": "r_markdown",
+    "hash": "2157681487",
+    "contents": "",
+    "dirty": false,
+    "created": 1599643629275.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "tempName": "Untitled2",
+        "cursorPosition": "370,19",
+        "scrollLine": "365"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1599654981,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1599654981118,
+    "read_only": false,
+    "read_only_alternatives": []
+}

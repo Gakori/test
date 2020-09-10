@@ -1,0 +1,5 @@
+"0","set.seed(123)"
+"0","sample <- sample(c(TRUE, FALSE), nrow(advert), replace = T, prob = c(0.6,0.4))"
+"0",""
+"0","train <- advert[sample, ]"
+"0","test <- advert[!sample, ]"

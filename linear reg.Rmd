@@ -1,0 +1,142 @@
+---
+title: "linear reg"
+author: "Faith"
+date: "9/8/2020"
+output: html_document
+---
+
+```{r}
+library(tidyverse) # data manipulation and viz
+library(modelr) # provides easy pipeline modeling function
+library(broom) # helps to tidy up model outputs
+```
+```{r}
+# load the data
+getwd()
+setwd("C:/Users/FGakori/Documents/supervised and unsupervised")
+
+advert <- read.csv('advert.csv', header = TRUE)
+advert
+```
+preparing the data
+use 60% - 40% split
+```{r}
+set.seed(123)
+sample <- sample(c(TRUE, FALSE), nrow(advert), replace = T, prob = c(0.6,0.4))
+
+train <- advert[sample, ]
+test <- advert[!sample, ]
+```
+
+
+# simple linear regression
+tv budget abd sales
+
+## model building
+```{r}
+model1 <- lm(Sales ~ TV, data = train)
+```
+
+```{r}
+summary(model1)
+```
+
+print tidt version of the model
+
+```{r}
+tidy(model1)
+```
+6.86 is the intercept abd 0.05 is the slope(TV)
+
+Stat significance of the coefficients
+```{r}
+confint(model1)
+```
+
+# Assessing Model Auracy
+
+RSE is an estimate of the standars deviation.average amount that the response will deviate from the true regression line
+```{r}
+sigma(model1)
+```
+
+R^2 represents the proportion of variance explained and so it always takes on a value btwn 0 and 1.
+```{r}
+rsquare(model1, data = train)
+
+```
+
+F-stat tests to see if at least one predictor variable has a non-zero coefficient.
+
+# making predictions
+
+```{r}
+(test <- test %>%
+   add_predictions(model1))
+```
+
+# imputing MSE
+```{r}
+#test MSE
+test %>% 
+  add_predictions(model1) %>%
+  summarise(MSE = mean((Sales - pred)^2))
+```
+```{r}
+# train MSE
+train %>% 
+  add_predictions(model1) %>%
+  summarise(MSE = mean((Sales - pred)^2))
+```
+# MULTIPLE REGRESSION
+## Model building
+
+```{r}
+model2 <- lm(Sales ~ TV + Radio + Newspaper, data = train)
+```
+
+```{r}
+summary(model2)
+```
+changes in newspaper do not appear to have a relationship witj changes in sales as th pvalue is greater than 0.05
+
+```{r}
+tidy(model2)
+```
+
+# model accuracy
+
+```{r}
+list(model1 = broom::glance(model1), model2 = broom::glance(model2))
+```
+
+
+# height and weight data
+
+```{r}
+x <- c(151, 174, 138, 186, 128, 136, 179, 163, 152, 131)
+y <- c(63, 81, 56, 91, 47, 57, 76, 72, 62, 48)
+```
+
+
+apply lm() function
+
+```{r}
+relation <- lm(y~x)
+print(relation)
+```
+
+```{r}
+summary(relation)
+```
+
+predict() function
+
+```{r}
+# Find weight of a person with height 170.
+
+a <- data.frame(x = 170)
+result <-  predict(relation,a)
+print(result)
+```
+

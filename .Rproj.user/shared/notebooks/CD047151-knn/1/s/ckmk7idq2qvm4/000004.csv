@@ -1,0 +1,27 @@
+"0","install.packages('gmodels')"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ‘C:/Users/FGakori/Documents/R/win-library/4.0’
+(as ‘lib’ is unspecified)
+"
+"2","trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.0/gmodels_2.18.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 114054 bytes (111 KB)
+"
+"2","downloaded 111 KB
+
+"
+"1","package â€˜gmodelsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\FGakori\AppData\Local\Temp\RtmpyUGvMW\downloaded_packages"
+"1",""
+"1","
+"
+"0","library(gmodels)"

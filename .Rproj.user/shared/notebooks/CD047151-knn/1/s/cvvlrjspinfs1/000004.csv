@@ -1,0 +1,3 @@
+"0","#remove the first variable"
+"0","prc <- prc[-1]"
+"0","head(prc)"

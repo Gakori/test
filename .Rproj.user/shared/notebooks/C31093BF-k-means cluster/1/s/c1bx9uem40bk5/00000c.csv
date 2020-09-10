@@ -1,0 +1,1 @@
+"0","df <- select(salary,-c(Status,Notes,Benefits, EmployeeName))"

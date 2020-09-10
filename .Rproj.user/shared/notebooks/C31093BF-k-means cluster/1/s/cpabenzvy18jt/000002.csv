@@ -1,0 +1,152 @@
+"0","# cleam unnecessary items"
+"0",""
+"0","gc()"
+"1","      "
+"1","    used"
+"1","  (Mb)"
+"1"," gc trigger"
+"1","  (Mb)"
+"1"," max used"
+"1","  (Mb)"
+"1","
+Ncells"
+"1"," 3106880"
+"1"," 166.0"
+"1","    5721611"
+"1"," 305.6"
+"1","  5721611"
+"1"," 305.6"
+"1","
+Vcells"
+"1"," 6388082"
+"1","  48.8"
+"1","   14786712"
+"1"," 112.9"
+"1"," 12205074"
+"1","  93.2"
+"1","
+"
+"0","rm(list = ls(all = TRUE))"
+"0",""
+"0","packages<-function(x){"
+"0","  x<-as.character(match.call()[[2]])"
+"0","  if (!require(x,character.only=TRUE)){"
+"0","    install.packages(pkgs=x,repos=""http://cran.r-project.org"")"
+"0","    require(x,character.only=TRUE)"
+"0","  }"
+"0","}"
+"0",""
+"0","packages(corrplot)"
+"2","Loading required package: corrplot
+"
+"2","corrplot 0.84 loaded
+"
+"0","packages(gridExtra)"
+"2","Loading required package: gridExtra
+"
+"0","packages(GGally)"
+"2","Loading required package: GGally
+"
+"2","Registered S3 method overwritten by 'GGally':
+  method from   
+  +.gg   ggplot2
+"
+"0","packages(cluster) # clustering algorithms "
+"2","Loading required package: cluster
+"
+"0","packages(factoextra) # clustering algorithms & visualization"
+"2","Loading required package: factoextra
+"
+"2","there is no package called ‘factoextra’"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installing package into ‘C:/Users/FGakori/Documents/R/win-library/4.0’
+(as ‘lib’ is unspecified)
+"
+"2","also installing the dependencies ‘ellipse’, ‘flashClust’, ‘leaps’, ‘scatterplot3d’, ‘dendextend’, ‘FactoMineR’
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/ellipse_0.4.2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 72148 bytes (70 KB)
+"
+"2","downloaded 70 KB
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/flashClust_1.01-2.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 36801 bytes (35 KB)
+"
+"2","downloaded 35 KB
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/leaps_3.1.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 102954 bytes (100 KB)
+"
+"2","downloaded 100 KB
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/scatterplot3d_0.3-41.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 338068 bytes (330 KB)
+"
+"2","downloaded 330 KB
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/dendextend_1.14.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3877891 bytes (3.7 MB)
+"
+"2","downloaded 3.7 MB
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/FactoMineR_2.3.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 3749881 bytes (3.6 MB)
+"
+"2","downloaded 3.6 MB
+
+"
+"2","trying URL 'http://cran.r-project.org/bin/windows/contrib/4.0/factoextra_1.0.7.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 416475 bytes (406 KB)
+"
+"2","downloaded 406 KB
+
+"
+"1","package â€˜ellipseâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜flashClustâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜leapsâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜scatterplot3dâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜dendextendâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜FactoMineRâ€™ successfully unpacked and MD5 sums checked
+"
+"1","package â€˜factoextraâ€™ successfully unpacked and MD5 sums checked
+"
+"1","
+"
+"1",""
+"1","The downloaded binary packages are in
+	C:\Users\FGakori\AppData\Local\Temp\RtmpyUGvMW\downloaded_packages"
+"1",""
+"1","
+"
+"2","Loading required package: factoextra
+"
+"2","Welcome! Want to learn more? See two factoextra-related books at https://goo.gl/ve3WBa
+"

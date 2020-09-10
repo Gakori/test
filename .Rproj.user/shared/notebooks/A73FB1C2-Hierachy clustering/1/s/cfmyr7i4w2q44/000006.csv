@@ -1,0 +1,6 @@
+"0","# average method"
+"0","avg <- hclust(d, method = 'average')"
+"0",""
+"0","# plot"
+"0",""
+"0","plot(avg, cex = 0.6, hang = -1)"

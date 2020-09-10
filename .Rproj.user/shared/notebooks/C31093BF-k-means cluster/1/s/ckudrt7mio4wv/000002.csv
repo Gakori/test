@@ -1,0 +1,1 @@
+"0","fviz_nbclust(x = winesNorm,FUNcluster = kmeans, method = 'silhouette' )"

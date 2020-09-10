@@ -1,0 +1,2 @@
+"0","df$Agency <- as.integer(as.factor(df$Agency))"
+"0","df$JobTitle <- as.integer(as.factor(df$JobTitle))"

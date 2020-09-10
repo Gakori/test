@@ -1,0 +1,6 @@
+"0","accuracy <- function(x){sum(diag(x)/(sum(rowSums(x)))) * 100}"
+"0","accuracy(tb)"
+"1","[1]"
+"1"," 71.00482"
+"1","
+"

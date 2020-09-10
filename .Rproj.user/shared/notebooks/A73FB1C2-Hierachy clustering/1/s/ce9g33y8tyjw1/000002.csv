@@ -1,0 +1,3 @@
+"0","#remove missing values"
+"0",""
+"0","df <- na.omit(USArrests)"

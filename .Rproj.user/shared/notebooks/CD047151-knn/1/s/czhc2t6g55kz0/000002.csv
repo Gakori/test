@@ -1,0 +1,4 @@
+"0","train <- iris_new[1:130,]"
+"0","test <- iris_new[131:150,]"
+"0","train_sp <- iris_random[1:130,5]"
+"0","test_sp <- iris_random[131:150,5]"

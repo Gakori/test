@@ -1,0 +1,7 @@
+"0","winesNorm %>% "
+"0","  mutate_if(Cluster = final$cluster) %>%"
+"0","  group_by(Cluster) %>%"
+"0","  summarize_all('median')"
+"2","Error in manip_if(.tbl, .predicate, .funs, enquo(.funs), caller_env(),  : 
+  argument "".predicate"" is missing, with no default
+"

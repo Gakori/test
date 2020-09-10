@@ -1,0 +1,62 @@
+---
+title: "SVM"
+author: "Faith"
+date: "9/7/2020"
+output: html_document
+---
+
+```{r}
+heart <- read.csv('http://bit.ly/HeartdiseaseDataset', sep = ',', header = FALSE)
+head(heart)
+```
+
+
+We check the structure of the dataframe through the function str()
+```{r}
+str(heart)
+```
+Next we split the data into training set and testing set.
+The “y” parameter takes the value of variable according to which data needs to be partitioned. 
+In our case, target variable is at V14, so we are passing heart$V14
+The “p” parameter holds a decimal value in the range of 0-1. It’s to show the percentage of the split. 
+We are using p=0.7. It means that data split should be done in 70:30 ratio. 
+So, 70% of the data is used for training and the remaining 30% is for testing the model.
+The “list” parameter is for whether to return a list or matrix. 
+We are passing FALSE for not returning a list
+
+```{r}
+intrain <- createDataPartition(y = heart$V14, p= 0.7, list = FALSE)
+training <- heart[intrain,]
+testing <- heart[-intrain,]
+```
+We check the dimensions of out training dataframe and testing dataframe
+
+```{r}
+dim(training); 
+dim(testing);
+```
+
+
+We then clean the data using the anyNA() method that checks for any null values.
+
+```{r}
+anyNA(heart)
+```
+
+Then check the summary of our data by using the summary() function
+
+
+```{r}
+summary(heart)
+```
+
+From our output above, we can see that the values of the various variables are not standardized. 
+For example, the V14 variables, which is our target variable, it holds only 2 values, either 0 or 1.
+This should be a categorical variable. To convert these to categorical variables, we need to factorize them.
+The following code will convert the training data frame’s “V14” column to a factor variable.
+```{r}
+
+training[["V14"]] = factor(training[["V14"]])
+training[["V14"]]
+```
+

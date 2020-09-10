@@ -1,0 +1,3 @@
+"0","# determine optimal clusters(k) using elbow method"
+"0",""
+"0","fviz_nbclust(x = winesNorm,FUNcluster = kmeans, method = 'wss' )"

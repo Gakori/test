@@ -1,0 +1,7 @@
+"0","# use hclust() for hierarchical clustering"
+"0",""
+"0","# first compute eucladian distance dist()"
+"0","d <- dist(df, method = 'euclidian')"
+"0",""
+"0","# h clustering wards method"
+"0","res.hc <- hclust(d, method = 'ward.D2')"

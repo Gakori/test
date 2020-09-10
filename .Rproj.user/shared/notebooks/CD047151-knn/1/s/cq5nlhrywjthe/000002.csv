@@ -1,0 +1,2 @@
+"0","iris_new <- as.data.frame(lapply(iris_random[,-5],normal))"
+"0","iris_new"

@@ -1,0 +1,2 @@
+"0","dia_nor <- as.data.frame(lapply(dia[,c(1,5,6,7,8,9,10)], nor))"
+"0","dia_nor"

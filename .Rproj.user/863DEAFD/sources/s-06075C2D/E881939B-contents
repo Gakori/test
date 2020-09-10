@@ -1,0 +1,213 @@
+---
+title: "Hierachy"
+author: "Faith"
+date: "9/9/2020"
+output: html_document
+---
+
+```{r}
+data("USArrests")
+head(USArrests)
+```
+```{r}
+#remove missing values
+
+df <- na.omit(USArrests)
+```
+
+
+```{r}
+# compute descriptive anlysis
+
+desc_stats <- data.frame(
+  Min = apply(df, 2, min), # minimum
+  Med = apply(df, 2, median), #median
+  Mean = apply(df, 2, mean),  # mean
+  SD = apply(df, 2, sd),      # Standard deviation
+  Max = apply(df, 2, max)     # Maximum
+)
+
+desc_stats <- round(desc_stats, 1)
+head(desc_stats)
+```
+
+
+```{r}
+# scaling
+
+df <- scale(df)
+head(df)
+```
+
+
+```{r}
+# use hclust() for hierarchical clustering
+
+# first compute eucladian distance dist()
+d <- dist(df, method = 'euclidian')
+
+# h clustering wards method
+res.hc <- hclust(d, method = 'ward.D2')
+```
+
+
+```{r}
+#plot a dendogram
+
+plot(res.hc, cex=0.6, hang= -1)
+```
+
+# CHALLANGE 1
+Using the USArrests datasets in the above example, 
+compute hierarchical clustering with other linkage methods,
+such as single, median, average, centroid, Ward’s and McQuitty’s.
+```{r}
+# single method
+
+single_m <- hclust(d, method = "single" )
+
+# visualize
+
+plot(single_m, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+# median method
+
+median_m <- hclust(d, method = 'median')
+
+# plot
+
+plot(median_m, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+# average method
+avg <- hclust(d, method = 'average')
+
+# plot
+
+plot(avg, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+# centroid
+cent <- hclust(d, method = "centroid")
+
+#plot
+plot(cent, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+# ward
+
+ward <- hclust(d, method = 'ward.D')
+
+#plot
+
+plot(ward, cex = 0.6, hang = -1)
+```
+
+
+```{r}
+# McQuitty's
+
+mc <- hclust(d, method = "mcquitty" )
+
+# plot
+plot(mc, cex=0.6, hang=-1)
+```
+
+# CHALLENGE 2
+Perform hierarchical clustering using the mtcars dataset
+```{r}
+head(mtcars)
+```
+
+
+```{r}
+# missing values
+sum(is.na(mtcars))
+
+# summary
+str(mtcars)
+```
+
+
+```{r}
+#
+summary(mtcars)
+
+```
+
+
+```{r}
+#scale
+scale(mtcars)
+```
+
+
+```{r}
+# clustering
+
+d <- dist(mtcars,method = 'euclidean')
+
+ward <- hclust(d, method = 'ward.D2')
+ward
+```
+
+
+```{r}
+#plt
+
+plot(ward, cex = 0.6, hang = -1)
+```
+
+# CHALLENGE 3
+```{r}
+
+df <- iris
+head(df)
+```
+
+
+```{r}
+summary(df)
+```
+```{r}
+#scale
+str(df)
+```
+
+
+```{r}
+# normalize
+
+normalize <- function(x){
+  return ((x-min(x)) / (max(x)-min(x)))
+}
+
+iris$Sepal.Length<- normalize(iris$Sepal.Length)
+iris$Sepal.Width<- normalize(iris$Sepal.Width)
+iris$Petal.Length<- normalize(iris$Petal.Length)
+iris$Petal.Width<- normalize(iris$Petal.Width)
+head(iris)
+```
+
+
+```{r}
+# distance
+
+d <- dist(iris, method = 'euclidean')
+
+# cluster
+med <- hclust(d, method = 'median')
+
+# plot
+plot(med, cex = 0.6, hang = -1)
+```
+

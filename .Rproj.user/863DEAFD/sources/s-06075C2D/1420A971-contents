@@ -1,0 +1,430 @@
+---
+title: "Clustering"
+author: "Faith"
+date: "9/8/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Installing all the necessary packages
+Creating a fuction to help load the data
+```{r}
+# cleam unnecessary items
+
+gc()
+rm(list = ls(all = TRUE))
+
+packages<-function(x){
+  x<-as.character(match.call()[[2]])
+  if (!require(x,character.only=TRUE)){
+    install.packages(pkgs=x,repos="http://cran.r-project.org")
+    require(x,character.only=TRUE)
+  }
+}
+
+packages(corrplot)
+packages(gridExtra)
+packages(GGally)
+packages(cluster) # clustering algorithms 
+packages(factoextra) # clustering algorithms & visualization
+```
+Load the data
+```{r}
+setwd('C:/Users/FGakori/Documents/supervised and unsupervised')
+wines <- read.csv('wine.csv')
+```
+
+```{r}
+head(wines)
+```
+Removing the first column
+```{r}
+```
+# Data Analysis
+
+```{r}
+summary(wines)
+```
+
+```{r}
+str(wines)
+```
+The variables are either numerical / integers
+
+```{r}
+library(magrittr)
+```
+
+
+plot histogram for each attribute
+```{r}
+ 
+```
+
+Correlation matrix
+
+```{r}
+corrplot(cor(wines), type = 'upper', method = 'number', tl.cex = 0.9)
+```
+There is a strong correlation between total_phenols and flavanoids. We can model the relationship between these two variables by fitting a linear equation.
+
+```{r}
+#  relationship btwn phenols and flavanoids
+
+ggplot(wines, aes(x = Phenols, y = Flavanoids)) +
+  geom_point() +
+  geom_smooth(method = 'lm', se = FALSE) +
+  theme_bw()
+```
+
+# preparing data for k-means
+
+normalize the data
+
+```{r}
+winesNorm <- as.data.frame(scale(wines))
+summary(winesNorm)
+```
+Computing k-means clustering in R
+
+We can compute k-means in R with the kmeans function. Here will group the data into two clusters (centers = 2). The kmeans function also has an nstart option that attempts multiple initial configurations and reports on the best one. For example, adding nstart = 25 will generate 25 initial configurations and reports on the best one. For example, adding nstart=25 generates 25 initial configurations. This approach is often recommended.
+
+```{r}
+set.seed(123)
+wines_k2 <- kmeans(winesNorm, centers = 2, nstart = 25)
+print(wines_k2)
+```
+visualize cluster created
+
+```{r}
+fviz_cluster(wines_k2, data = winesNorm)
+```
+When we print the model we build (wines_k2), it shows information like, number of clusters, centers of the clusters, size of the clusters and sum of square. Let’s check how to get these attributes of our model.
+
+```{r}
+# cluster to whih each point is associated
+wines_k2$cluster
+```
+```{r}
+# cluster centers(means)
+
+wines_k2$centers
+```
+```{r}
+# cluster size
+wines_k2$size
+```
+```{r}
+# between clusters sum of squares
+wines_k2$betweenss
+```
+
+```{r}
+# total sum of squares
+wines_k2$tot.withinss
+```
+
+```{r}
+# total sum of squares
+wines_k2$totss
+```
+
+the number of clusters (k) must be set before we start the algorithm, it is often advantageous to use several different values of k and examine the differences in the results.
+
+We can execute the same process for 3, 4, and 5 clusters, and the results are shown in the figure:
+
+```{r}
+wines_K3 <- kmeans(winesNorm, centers = 3, nstart = 25)
+wines_K4 <- kmeans(winesNorm, centers = 4, nstart = 25)
+wines_K5 <- kmeans(winesNorm, centers = 5, nstart = 25)
+```
+
+plot the clusters to compare different k values
+```{r}
+p1 <- fviz_cluster(wines_k2, geom = "point", data = winesNorm) + ggtitle(" K = 2")
+p2 <- fviz_cluster(wines_K3, geom = "point", data = winesNorm) + ggtitle(" K = 3")
+p3 <- fviz_cluster(wines_K4, geom = "point", data = winesNorm) + ggtitle(" K = 4")
+p4 <- fviz_cluster(wines_K5, geom = "point", data = winesNorm) + ggtitle(" K = 5")
+
+grid.arrange(p1, p2, p3, p4, nrow = 2)
+```
+# Determine optimal clusters
+
+K-means clustering requires that you specify in advance the number of clusters to extract. A plot of the total within-groups sums of squares against the number of clusters in a k-means solution can be helpful. A bend in the graph can suggest the appropriate number of clusters.
+
+Below are the methods to determine the optimal number of clusters
+
+Elbow method
+Silhouette method
+Gap statistic
+
+
+```{r}
+# method 1
+# determine optimal clusters(k) using elbow method
+
+fviz_nbclust(x = winesNorm,FUNcluster = kmeans, method = 'wss' )
+```
+
+creating a function 
+```{r}
+wssplot <- function(data, nc = 15, set.seed = 1234){
+  wss <- (nrow(data) - 1)*sum(apply(data, 2, var))
+  for(i in 2:nc) {
+    set.seed(1234)
+    wss[i] <- sum(kmeans(x = data, centers = i, nstart = 25)$withinss)
+  }
+  plot(1:nc, wss, type = 'b', xlab = 'Number of Clusters', ylab = 'Within Group Sum of Square',
+       main = 'Elbow Method Plot to Find Optimal Number of Clusters', frame.plot = T,
+       col = 'blue', lwd = 1.5)
+}
+
+wssplot(winesNorm)
+```
+
+
+# Determining Optimal clusters (k) Using Average Silhouette Method
+
+```{r}
+fviz_nbclust(x = winesNorm,FUNcluster = kmeans, method = 'silhouette' )
+```
+# There is another method called Gap-Static used for finding the optimal value of K.
+
+```{r}
+# compute gap statistic
+set.seed(123)
+gap_stat <- clusGap(x = winesNorm, FUN = kmeans, K.max = 15, nstart = 25, B = 50 )
+
+# Print the result
+print(gap_stat, method = "firstmax")
+```
+
+
+
+```{r}
+# plot the result to determine the optimal number of clusters.
+fviz_gap_stat(gap_stat)
+```
+Final analysis using three clusters
+
+```{r}
+# compute k-means clustering with k=3
+set.seed(123)
+final <- kmeans(winesNorm, centers = 3, nstart = 25)
+print(final)
+```
+
+visualize the results
+```{r}
+fviz_cluster(final, data = winesNorm)
+```
+
+We can extract the clusters and add to our initial data to do some descriptive statistics at the cluster level
+
+```{r}
+winesNorm %>% 
+  mutate_if(Cluster = final$cluster) %>%
+  group_by(Cluster) %>%
+  summarize_all('median')
+```
+
+# IRIS DATASET
+
+```{r}
+require('datasets')
+```
+
+
+```{r}
+data('iris')
+
+str(iris)
+```
+
+
+```{r}
+summary(iris)
+```
+
+
+```{r}
+head(iris)
+```
+
+
+```{r}
+# remove species and store it in another variable
+# normalize
+
+iris.new <- iris[, c(1,2,3,4)]
+iris.class <- iris[, 'Species']
+head(iris.new)
+```
+
+
+```{r}
+#previewing class columns
+head(iris.class)
+```
+
+
+```{r}
+# normalize
+normalize <- function(x){
+  return((x-min(x)) / (max(x) - min(x)))
+}
+
+iris.new$Sepal.Length<- normalize(iris.new$Sepal.Length)
+iris.new$Sepal.Width<- normalize(iris.new$Sepal.Width)
+iris.new$Petal.Length<- normalize(iris.new$Petal.Length)
+iris.new$Petal.Width<- normalize(iris.new$Petal.Width)
+head(iris.new)
+```
+
+
+```{r}
+# apply kmeans
+# centroids(k)=3
+
+result <- kmeans(iris.new, 3)
+
+# preciewing no. of records in each cluster
+result$size
+```
+
+
+```{r}
+# Getting the value of cluster center datapoint value(3 centers for k=3)
+
+result$centers
+```
+
+
+```{r}
+# Getting the cluster vector that shows the cluster where each record falls
+
+result$cluster
+```
+
+
+
+```{r}
+# Plotting to see how Sepal.Length and Sepal.Width data points have been distributed in clusters
+plot(iris.new[c(1,2)], col = result$cluster)
+```
+
+
+```{r}
+# Plotting to see how Sepal.Length and Sepal.Width data points have been distributed  
+# originally as per "class" attribute in dataset
+
+plot(iris.new[c(1,2)], col = iris.class)
+```
+CHALLANGE 2
+
+```{r}
+salary <- read.csv('http://bit.ly/SalaryDatasetClustering')
+```
+
+
+```{r}
+head(salary)
+```
+
+```{r}
+dim(salary)
+```
+
+
+```{r}
+# null values
+sum(is.na(salary))
+```
+
+
+```{r}
+summary(salary)
+```
+
+
+```{r}
+df <- select(salary,-c(Status,Notes,Benefits, EmployeeName))
+```
+
+
+```{r}
+head(df)
+```
+
+
+```{r}
+df$Agency <- as.integer(as.factor(df$Agency))
+df$JobTitle <- as.integer(as.factor(df$JobTitle))
+```
+
+
+```{r}
+head(df)
+```
+
+
+```{r}
+```
+
+
+```{r}
+summary(df)
+```
+
+
+```{r}
+# scale the data
+
+normalize <- function(x){
+  return ((x-min(x)) / (max(x)-min(x)))
+}
+
+df$JobTitle <- normalize(df$JobTitle)
+df$TotalPay <- normalize(df$TotalPay)
+df$TotalPayBenefits <- normalize(df$TotalPayBenefits)
+df$Year <- normalize(df$Year)
+```
+
+
+```{r}
+sum(is.na(df))
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+

@@ -1,0 +1,2 @@
+"0","heart <- read.csv('http://bit.ly/HeartdiseaseDataset', sep = ',', header = FALSE)"
+"0","head(heart)"

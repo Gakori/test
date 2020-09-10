@@ -1,0 +1,2 @@
+"0","setwd('C:/Users/FGakori/Documents/supervised and unsupervised')"
+"0","wines <- read.csv('wine.csv')"

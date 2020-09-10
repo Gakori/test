@@ -1,0 +1,4 @@
+"0","#test MSE"
+"0","test %>% "
+"0","  add_predictions(model1) %>%"
+"0","  summarise(MSE = mean((Sales - pred)^2))"

@@ -1,0 +1,2 @@
+"0",""
+"0","plot(iris.new[c(1,2)], col = result$cluster)"

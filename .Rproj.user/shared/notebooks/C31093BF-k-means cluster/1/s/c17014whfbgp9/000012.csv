@@ -1,0 +1,9 @@
+"0","for (x in salary$Status){"
+"0","    if (x == ""PT""){"
+"0","        print(count(x))"
+"0","    }  "
+"0","    "
+"0","}"
+"2","Error in UseMethod(""group_vars"") : 
+  no applicable method for 'group_vars' applied to an object of class ""character""
+"

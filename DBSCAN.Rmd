@@ -1,0 +1,107 @@
+---
+title: "DBSCAN"
+author: "Faith"
+date: "9/10/2020"
+output: html_document
+---
+
+```{r}
+install.packages('dbscan')
+library('dbscan')
+```
+
+```{r}
+# load the data
+
+data(iris)
+head(iris)
+```
+
+
+```{r}
+# remove class label
+
+df <- iris[, c(1,2,3,4)]
+head(df)
+```
+```{r}
+dim(df)
+```
+
+
+```{r}
+# apply dbscan algorithm
+
+db <- dbscan(df, eps=0.4, MinPts = 4)
+```
+
+
+```{r}
+print(db)
+```
+
+
+```{r}
+# plot the clusters
+hullplot(df, db$cluster)
+```
+
+# CHALLENGE 1
+
+```{r}
+df1 <- read.csv('http://bit.ly/MSDBSCANClusteringDataset', header = TRUE, dec = ',' , check.names=FALSE)
+head(df1)
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
